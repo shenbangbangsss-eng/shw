@@ -1,0 +1,75 @@
+name: Publish birthday card
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/publish.yml"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Download card assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p site/assets
+          curl -fsS -c cookies.txt -X POST --data-urlencode "answer=19961016" "https://nisan-30-birthday.sillygiant7.chatgpt.site/unlock" -o /dev/null
+          curl -fsS -b cookies.txt "https://nisan-30-birthday.sillygiant7.chatgpt.site/" -o site/card.html
+          curl -fsS -b cookies.txt "https://nisan-30-birthday.sillygiant7.chatgpt.site/styles.css" -o site/styles.css
+          curl -fsS -b cookies.txt "https://nisan-30-birthday.sillygiant7.chatgpt.site/script.js" -o site/script.js
+          for n in 1 2 3 4 5 6; do
+            curl -fsS -b cookies.txt "https://nisan-30-birthday.sillygiant7.chatgpt.site/assets/photo-${n}.jpg" -o "site/assets/photo-${n}.jpg"
+          done
+          touch site/.nojekyll
+          cat > site/index.html <<'EOF'
+          <!doctype html>
+          <html lang="zh-CN">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+            <meta name="theme-color" content="#171126">
+            <meta name="robots" content="noindex, nofollow, noarchive">
+            <title>请回答一道小问题</title>
+            <style>
+              :root{color-scheme:dark;--ink:#f8ecdc;--muted:#cbb9c8;--gold:#d9b66f;--night:#171126}*{box-sizing:border-box}html,body{min-height:100%}
+              body{margin:0;color:var(--ink);font-family:"Noto Serif SC","Songti SC",serif;background:radial-gradient(circle at 22% 18%,rgba(134,72,121,.35),transparent 30%),radial-gradient(circle at 82% 78%,rgba(84,55,115,.3),transparent 30%),linear-gradient(145deg,#100b19,var(--night) 55%,#24142d)}
+              main{position:relative;min-height:100vh;min-height:100svh;display:grid;place-items:center;padding:28px 18px;overflow:hidden}main:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(255,255,255,.75) 0 1px,transparent 1.5px),radial-gradient(circle,rgba(217,182,111,.65) 0 1px,transparent 1.5px);background-position:12% 18%,72% 28%;background-size:83px 97px,131px 157px;opacity:.25}
+              section{position:relative;z-index:1;width:min(100%,460px);padding:42px 26px 30px;text-align:center;border:1px solid rgba(217,182,111,.38);border-radius:28px;background:linear-gradient(155deg,rgba(45,30,55,.94),rgba(24,16,36,.96));box-shadow:0 30px 80px rgba(0,0,0,.45)}
+              .eyebrow{margin:0;color:var(--gold);font:600 .72rem/1.2 system-ui,sans-serif;letter-spacing:.28em}.moon{margin:20px auto 12px;color:#f7d99a;font-size:3.7rem;line-height:1;text-shadow:0 0 24px rgba(247,217,154,.35)}h1{margin:0;font-size:clamp(2rem,9vw,3rem);font-weight:500;letter-spacing:.08em}.question{margin:22px auto 26px;max-width:20em;color:var(--muted);font-size:1rem;line-height:1.85}
+              form{display:grid;gap:13px}label{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip:rect(0 0 0 0)}input,button{width:100%;min-height:52px;border-radius:999px;font:inherit}input{padding:0 20px;color:var(--ink);text-align:center;letter-spacing:.14em;border:1px solid rgba(217,182,111,.28);outline:none;background:rgba(8,5,13,.38)}input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(217,182,111,.12)}button{cursor:pointer;color:#261428;font-weight:700;border:0;background:linear-gradient(135deg,#f0d69a,#c99958);box-shadow:0 10px 28px rgba(217,182,111,.2)}.message{min-height:1.4em;margin:0;color:#f3a9b2;font:.9rem/1.4 system-ui,sans-serif}.hint{margin:12px 0 0;color:#95869a;font:.78rem/1.5 system-ui,sans-serif}
+            </style>
+          </head>
+          <body>
+            <main><section><p class="eyebrow">A LITTLE SECRET</p><div class="moon" aria-hidden="true">☾</div><h1>开启这封祝福</h1><p class="question">请写出世界上最美好最勇敢最聪慧的小姑娘的生日</p><form id="gate-form"><label for="answer">答案</label><input id="answer" type="password" inputmode="numeric" autocomplete="off" placeholder="请输入答案" required><button type="submit">打开贺卡 ✦</button><p id="message" class="message" role="alert"></p></form><p class="hint">答对后，这台设备会记住你的答案</p></section></main>
+            <script>
+              const h='7dd19472f8334373a4c2a087e445db23e7f0a476519dab0023402179e693f3b2',k='nisan-birthday-card-unlocked';if(localStorage.getItem(k)==='yes')location.replace('card.html');async function s(v){const d=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(v));return[...new Uint8Array(d)].map(b=>b.toString(16).padStart(2,'0')).join('')}document.querySelector('#gate-form').addEventListener('submit',async e=>{e.preventDefault();const i=document.querySelector('#answer'),m=document.querySelector('#message');m.textContent='';if(await s(i.value.trim())!==h){i.select();m.textContent='答案似乎不对，再想一想吧。';return}localStorage.setItem(k,'yes');location.replace('card.html')});
+            </script>
+          </body></html>
+          EOF
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
