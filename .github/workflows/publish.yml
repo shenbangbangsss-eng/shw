@@ -1,4 +1,5 @@
 name: Publish birthday card
+# Republish the card when this workflow changes.
 
 on:
   workflow_dispatch:
