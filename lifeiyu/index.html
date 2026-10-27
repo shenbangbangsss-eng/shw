@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#07102d">
+    <meta name="description" content="写给李飞雨的一封生日长信">
+    <title>李飞雨，生日快乐！</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="reading-progress" aria-hidden="true"><span id="progress"></span></div>
+
+    <button class="music-control" id="musicControl" type="button" aria-pressed="false">
+      <span class="music-control__disc" aria-hidden="true">♫</span>
+      <span class="music-control__label">播放音乐</span>
+    </button>
+    <audio id="birthdaySong" preload="metadata" loop src="assets/birthday-song.mp3"></audio>
+
+    <main>
+      <section class="hero hero--image-only" id="top" aria-label="生日贺卡封面">
+        <img class="hero__image" src="assets/image-01.png" alt="李飞雨生日快乐涂鸦封面">
+      </section>
+
+      <section class="opening chapter" id="wish">
+        <div class="opening__halo reveal" aria-hidden="true"></div>
+        <div class="opening__image reveal">
+          <img src="assets/image-02.png" alt="弹吉他的史迪奇">
+        </div>
+        <div class="opening__copy reveal">
+          <span class="chapter-no">01 · FIRST WISH</span>
+          <h2>祝福加载中 <b>✨</b></h2>
+          <p>祝李飞雨和她在意的人身体健康，开心顺遂，得偿所愿，当然还有祝你发大财！</p>
+        </div>
+      </section>
+
+      <section class="chapter split split--aqua">
+        <div class="split__visual reveal">
+          <span class="scribble scribble--one" aria-hidden="true">WAVE!</span>
+          <img src="assets/image-03.png" alt="游泳主题史迪奇插画">
+        </div>
+        <article class="letter-card reveal">
+          <span class="chapter-no">02 · HEALTH</span>
+          <h2>健康与水上五项 <b>🏊</b></h2>
+          <p>今年联系变少了，但是我相信你肯定越过越好啦，不知道到2027年的时候你是否可以做一个引体向上了，还是现在就可以做到了。</p>
+          <p>第一个祝李飞雨未来在普拉提上核心越来越稳，塑形越来越美；游泳越来越快，蝶泳效率越来越高，wave的感觉越来越好，帅气的在泳道里碾压所有人；潜水去到更多水域；早日做出引体向上……</p>
+          <p>天哪，这一通写完感觉仿佛是在督促你备战奥运，而且还是要参加水上五项的那种，有点太努力了……好像最开始只是想祝你身体健康的，好吧，重新说，祝李飞雨不再腰疼脖子疼，除了偶尔口腔溃疡没有其他疾病！</p>
+        </article>
+      </section>
+
+      <section class="chapter overlap overlap--pink">
+        <div class="overlap__copy reveal">
+          <span class="chapter-no">03 · ORDINARY DAYS</span>
+          <h2>平凡又幸福的日子 <b>💗</b></h2>
+          <p>然后祝你每天都开开心心的，这一点就有点空了，好像也给不出什么超级具体的祝福，因为均值回归的原因，无论我们得到了什么，好像心情还是会回到那个普通的基准值，但是，普普通通那也不错对吧？</p>
+          <p>今年我在我的小屋子里，时常会觉得好幸福好想一直呆在自己的小房子里看书，我就想，估计李飞雨在她的大房子里也会很开心吧~</p>
+        </div>
+        <figure class="overlap__figure reveal">
+          <img src="assets/image-04.png" alt="温暖拥抱的史迪奇插画">
+          <figcaption>愿普通的每一天<br>都恰好是喜欢的样子</figcaption>
+        </figure>
+      </section>
+
+      <section class="chapter poster poster--blue">
+        <div class="poster__wash" aria-hidden="true"></div>
+        <div class="poster__image reveal">
+          <img src="assets/image-05.jpg" alt="工作与成就主题插画">
+        </div>
+        <div class="poster__copy reveal">
+          <span class="chapter-no">04 · CAREER</span>
+          <h2>事业好运气 <b>🚀</b></h2>
+          <p>嗯，还有祝你做出你想做的项目，但是很抱歉我确实不记得啦，依稀记得你们单位要搭一个系统什么的，祝你成功获得超大成就感然后在单位kuku升职~</p>
+        </div>
+        <strong class="poster__word" aria-hidden="true">LUCKY</strong>
+      </section>
+
+      <section class="chapter postcard">
+        <div class="postcard__stamp reveal" aria-hidden="true">05<br><small>YUM</small></div>
+        <figure class="postcard__photo reveal">
+          <img src="assets/image-06.png" alt="美食主题史迪奇插画">
+        </figure>
+        <article class="postcard__note reveal">
+          <span class="chapter-no">05 · GOOD FOOD</span>
+          <h2>天天吃得香 <b>🍜</b></h2>
+          <p>祝你吃到好吃的东西，外卖下馆子都不踩雷，欸这个真的很重要啊……</p>
+          <div class="handwritten" aria-hidden="true">一口就开心 :)</div>
+        </article>
+      </section>
+
+      <section class="chapter split split--gold split--reverse">
+        <div class="split__visual reveal">
+          <span class="scribble scribble--two" aria-hidden="true">¥5,000,000</span>
+          <img src="assets/image-07.png" alt="发财主题史迪奇插画">
+        </div>
+        <article class="letter-card reveal">
+          <span class="chapter-no">06 · FORTUNE</span>
+          <h2>暴富剧本 <b>💰</b></h2>
+          <p>还有俗气的祝你发大财，这个我暂时也没想好怎么发大财，祝你用你的急救知识救到一个亿万富翁然后TA醒来看到教科书的绷带包扎，感激涕零给你转账五百万吧，这是我最近想到的听起来最有道德资本的暴富剧本了。</p>
+        </article>
+      </section>
+
+      <section class="chapter long-letter" id="thanks">
+        <div class="long-letter__visual reveal">
+          <img src="assets/image-08-cutout.png" alt="感谢与陪伴主题史迪奇插画">
+          <span aria-hidden="true">THANK<br>YOU</span>
+        </div>
+        <article class="long-letter__paper reveal">
+          <span class="chapter-no">07 · THANK YOU</span>
+          <h2>谢谢你，李飞雨 <b>🌟</b></h2>
+          <p>嗯，最后这段的开头删改好几遍不知道咋说合适，总之，我很多的想法和情感的认知确实幼稚不够成熟，给你带来压力是我的问题，我也反思，重新学习了很多，希望没有给你带来很长时间的困扰，希望保持距离让你舒服，不过生日送祝福应该没关系的对吧！</p>
+          <p>谢谢你教我游泳，谢谢你愿意和我一起做游戏（我现在也在学习codex写程序做游戏，话说这个电子贺卡就是我和codex做的，至于小程序，说真的今年AI迭代给我的冲击力太大了，我很怀疑现在去画明信片还有意义吗所以停止了，包括独游也是，我没有思考出结果，但我也没停，这里面有你的激励），最感谢的是你让我又重新捡起了不会就立刻学的习惯。</p>
+          <p>我觉得能让别人变得更好应该对ENFJ算成就吧，所以要告诉你李飞雨就是很好的榜样！</p>
+          <span class="long-letter__sign">—— 一封认真写下的生日信</span>
+        </article>
+      </section>
+
+      <section class="chapter overlap overlap--violet overlap--reverse" id="lamp">
+        <div class="overlap__copy reveal">
+          <span class="chapter-no">08 · THE LAMP</span>
+          <h2>关于那盏灯 <b>💡</b></h2>
+          <p>（最后真的很不好意思的弱弱说一句，你还记得那个灯吗，我有开始做，但是一方面我的生活在9月和10月迎来了一些崭新的焦头烂额和退展，但是我明年一定可以做完的，真是很抱歉……</p>
+        </div>
+        <figure class="overlap__figure reveal">
+          <img src="assets/image-09-cutout.png" alt="关于那盏灯的生日插画">
+          <figcaption>有些答应过的事<br>只是来得慢一点</figcaption>
+        </figure>
+      </section>
+
+      <section class="finale">
+        <img class="finale__image" src="assets/image-10.jpg" alt="莉萝拥抱史迪奇">
+        <div class="finale__glow" aria-hidden="true"></div>
+        <div class="finale__copy reveal">
+          <span class="chapter-no">09 · ALWAYS</span>
+          <h2>生日快乐<br><em>永远快乐</em> <b>🎂</b></h2>
+          <p>不管怎么样我永远希望李飞雨健康开心幸福得偿所愿！今年冬天据说超级冷，注意保暖！</p>
+          <a href="#top">回到开头 <span aria-hidden="true">↑</span></a>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
